@@ -1,16 +1,94 @@
 ---
-
+import '../styles/global.css';
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>OctoGon 3D Portfolio</title>
+    <!-- Local AOS for scroll animations -->
+    <link rel="stylesheet" href="/aos.css" />
+  </head>
+  <body class="bg-gray-900 text-white min-h-screen flex flex-col">
+    <!-- Hero/Header Section -->
+    <header class="flex flex-col items-center py-12 bg-gray-800">
+      <div class="w-32 h-32 rounded-full bg-gray-700 mb-4"></div> <!-- Profile Pic Placeholder -->
+      <h1 class="text-4xl font-bold mb-2">OctoGon 3D</h1>
+      <p class="text-blue-400 mb-4">Beginner Blender artist. Join me on this journey!</p>
+      <div class="flex gap-4">
+        <a href="#" class="hover:text-blue-400">YouTube</a>
+        <a href="#" class="hover:text-pink-400">Instagram</a>
+        <a href="#" class="hover:text-green-400">Gumroad</a>
+        <a href="#" class="hover:text-yellow-400">Email</a>
+      </div>
+    </header>
+
+    <!-- Alternating Overlapping Gallery Section -->
+    <section class="max-w-3xl mx-auto py-12 flex flex-col gap-8">
+      <h2 class="text-2xl font-bold mb-8 text-center">Latest Creations</h2>
+      <!-- Tile 1: Left -->
+      <div class="relative w-2/3 self-start -translate-x-6 z-10" data-aos="fade-right">
+        <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+          <img src="https://placehold.co/600x400/1e293b/fff?text=Art+1" alt="Art 1" class="w-full h-64 object-cover" />
+        </div>
+      </div>
+      <!-- Tile 2: Right, overlapping previous -->
+      <div class="relative w-2/3 self-end translate-x-6 -mt-16 z-20" data-aos="fade-left">
+        <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+          <img src="https://placehold.co/600x400/334155/fff?text=Art+2" alt="Art 2" class="w-full h-64 object-cover" />
+        </div>
+      </div>
+      <!-- Tile 3: Left, overlapping previous -->
+      <div class="relative w-2/3 self-start -translate-x-6 -mt-16 z-30" data-aos="fade-right">
+        <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+          <img src="https://placehold.co/600x400/475569/fff?text=Art+3" alt="Art 3" class="w-full h-64 object-cover" />
+        </div>
+      </div>
+      <!-- Tile 4: Right, overlapping previous -->
+      <div class="relative w-2/3 self-end translate-x-6 -mt-16 z-40" data-aos="fade-left">
+        <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+          <img src="https://placehold.co/600x400/64748b/fff?text=Art+4" alt="Art 4" class="w-full h-64 object-cover" />
+        </div>
+      </div>
+      <!-- Add more tiles as needed -->
+    </section>
+
+    <!-- About Section -->
+    <section class="bg-gray-800 py-12">
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class="text-2xl font-bold mb-4">About</h2>
+        <p class="mb-2">Hi! I’m OctoGon 3D, a hobbyist Blender artist exploring the world of abstract procedural art. I share my creations on social media and love connecting with fellow artists and fans.</p>
+        <p>Follow me for more digital art and behind-the-scenes content!</p>
+      </div>
+    </section>
+
+    <!-- Shop Section -->
+    <section class="py-12">
+      <div class="max-w-xl mx-auto text-center">
+        <h2 class="text-2xl font-bold mb-4">Shop Wallpapers</h2>
+        <a href="#" class="px-8 py-3 rounded-full bg-pink-400 text-gray-900 font-semibold text-lg shadow-lg hover:bg-pink-500 transition">Shop on Gumroad</a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-6 text-center text-sm text-gray-400 mt-auto">
+      <div class="flex justify-center gap-4 mb-2">
+        <a href="#" class="hover:text-blue-400">YouTube</a>
+        <a href="#" class="hover:text-pink-400">Instagram</a>
+        <a href="#" class="hover:text-green-400">Gumroad</a>
+      </div>
+      <div>© 2024 OctoGon 3D</div>
+    </footer>
+    <script src="/aos.js" is:inline></script>
+    <script>
+      setTimeout(function () {
+        if (window.AOS) {
+          AOS.init();
+        } else {
+          console.error('AOS not found on window');
+        }
+      }, 100);
+    </script>
+  </body>
 </html>
