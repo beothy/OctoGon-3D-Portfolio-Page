@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { hero } from '../content/heroContent.js';
 ---
 
 <html lang="en">
@@ -13,18 +14,21 @@ import '../styles/global.css';
   <body class="bg-gray-900 text-white min-h-screen flex flex-col">
     <!-- Hero/Header Section (with About merged in) -->
     <header class="min-h-screen flex flex-col justify-center items-center bg-gray-800">
-      <img src="/logo.jpg" alt="Logo" class="w-32 h-32 rounded-full object-cover mb-4" />
-      <h1 class="text-4xl font-bold mb-2">OctoGon 3D</h1>
-      <p class="text-blue-400 mb-4">Beginner Blender artist. Join me on this journey!</p>
-      <div class="flex gap-4 mb-8">
-        <a href="#" class="hover:text-blue-400">YouTube</a>
-        <a href="#" class="hover:text-pink-400">Instagram</a>
-        <a href="#" class="hover:text-green-400">Gumroad</a>
-        <a href="#" class="hover:text-yellow-400">Email</a>
-      </div>
-      <div class="max-w-2xl mx-auto text-center">
-        <p class="mb-2">Hi! I’m OctoGon 3D, a hobbyist Blender artist exploring the world of abstract procedural art. I share my creations on social media and love connecting with fellow artists and fans.</p>
-        <p>Follow me for more digital art and behind-the-scenes content!</p>
+      <div class="bg-gray-900 rounded-2xl shadow-2xl flex flex-col md:flex-row items-center gap-8 px-8 py-10 max-w-2xl w-full border border-gray-700">
+        <img src="/logo.jpg" alt="Logo" class="w-32 h-32 rounded-full object-cover border-4 border-blue-400 shadow-lg" />
+        <div class="flex-1 flex flex-col items-center md:items-start text-center md:text-left">
+          <h1 class="text-4xl font-extrabold mb-2 tracking-tight">{hero.name}</h1>
+          <p class="text-blue-400 text-lg mb-4 font-semibold">{hero.tagline}</p>
+          <div class="flex gap-4 mb-4">
+            {hero.links.map(link => (
+              <a href={link.href} class={link.class}>{link.label}</a>
+            ))}
+          </div>
+          <div class="text-gray-300 text-sm">
+            {hero.about}<br />
+            {hero.follow}
+          </div>
+        </div>
       </div>
     </header>
 
