@@ -13,8 +13,8 @@ import { hero } from '../content/heroContent.js';
   </head>
   <body class="bg-gray-900 text-white min-h-screen flex flex-col">
     <!-- Hero/Header Section (with About merged in) -->
-    <header class="min-h-screen flex flex-col justify-center items-center bg-gray-800">
-      <div class="bg-gray-900 rounded-2xl shadow-2xl flex flex-col md:flex-row items-center gap-8 px-8 py-10 max-w-2xl w-full border border-gray-700">
+    <header class="min-h-screen flex flex-col justify-center items-center bg-gray-800 relative" id="hero-section">
+      <div id="business-card" class="bg-gray-900 rounded-2xl shadow-2xl flex flex-col md:flex-row items-center gap-8 px-8 py-10 max-w-2xl w-full border border-gray-700 z-0">
         <img src="/logo.jpg" alt="Logo" class="w-32 h-32 rounded-full object-cover border-4 border-blue-400 shadow-lg" />
         <div class="flex-1 flex flex-col items-center md:items-start text-center md:text-left">
           <h1 class="text-4xl font-extrabold mb-2 tracking-tight">{hero.name}</h1>
@@ -30,49 +30,126 @@ import { hero } from '../content/heroContent.js';
           </div>
         </div>
       </div>
+      <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" is:inline></script>
+      <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" is:inline></script>
+      <script is:inline>
+        window.addEventListener('load', function () {
+          const businessCard = document.getElementById('business-card');
+          const heroSection = document.getElementById('hero-section');
+          const gallerySection = document.querySelector('.gallery-section');
+          if (window.gsap && window.ScrollTrigger && businessCard && heroSection && gallerySection) {
+            gsap.registerPlugin(ScrollTrigger);
+            ScrollTrigger.create({
+              trigger: heroSection,
+              start: 'top top',
+              endTrigger: gallerySection,
+              end: 'top top',
+              pin: businessCard,
+              pinSpacing: false,
+              anticipatePin: 1,
+            });
+          }
+        });
+      </script>
     </header>
 
     <!-- Alternating Overlapping Gallery Section -->
-    <section class="min-h-screen flex flex-col justify-center items-center bg-gray-900 pb-12">
-      <h2 class="text-2xl font-bold mb-8 text-center">Latest Creations</h2>
-      <div class="max-w-3xl w-full flex flex-col gap-8">
-        <!-- Tile 1: Left -->
-        <div class="relative w-2/3 self-start -translate-x-6 z-10" data-aos="fade-right">
-          <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden">
-            <img src="https://placehold.co/600x400/1e293b/fff?text=Art+1" alt="Art 1" class="w-full h-64 object-cover" />
+    <section class="flex flex-col justify-center items-center bg-gray-900 py-24 gallery-section z-0" id="gallery-section">
+      <div id="gallery-card" class="w-full max-w-3xl z-0">
+        <h2 class="text-2xl font-bold mb-8 text-center">Latest Creations</h2>
+        <div class="max-w-3xl w-full flex flex-col gap-8">
+          <!-- Tile 1: Left -->
+          <div class="relative w-2/3 self-start -translate-x-6 z-10" data-aos="fade-right">
+            <div class="bg-gray-800 rounded-xl shadow-xl overflow-hidden">
+              <img src="https://placehold.co/600x400/1e293b/fff?text=Art+1" alt="Art 1" class="w-full h-64 object-cover" />
+            </div>
           </div>
-        </div>
-        <!-- Tile 2: Right, overlapping previous -->
-        <div class="relative w-2/3 self-end translate-x-6 -mt-16 z-20" data-aos="fade-left">
-          <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden">
-            <img src="https://placehold.co/600x400/334155/fff?text=Art+2" alt="Art 2" class="w-full h-64 object-cover" />
+          <!-- Tile 2: Right, overlapping previous -->
+          <div class="relative w-2/3 self-end translate-x-6 -mt-16 z-20" data-aos="fade-left">
+            <div class="bg-gray-800 rounded-xl shadow-xl overflow-hidden">
+              <img src="https://placehold.co/600x400/334155/fff?text=Art+2" alt="Art 2" class="w-full h-64 object-cover" />
+            </div>
           </div>
-        </div>
-        <!-- Tile 3: Left, overlapping previous -->
-        <div class="relative w-2/3 self-start -translate-x-6 -mt-16 z-30" data-aos="fade-right">
-          <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden">
-            <img src="https://placehold.co/600x400/475569/fff?text=Art+3" alt="Art 3" class="w-full h-64 object-cover" />
+          <!-- Tile 3: Left, overlapping previous -->
+          <div class="relative w-2/3 self-start -translate-x-6 -mt-16 z-30" data-aos="fade-right">
+            <div class="bg-gray-800 rounded-xl shadow-xl overflow-hidden">
+              <img src="https://placehold.co/600x400/475569/fff?text=Art+3" alt="Art 3" class="w-full h-64 object-cover" />
+            </div>
           </div>
-        </div>
-        <!-- Tile 4: Right, overlapping previous -->
-        <div class="relative w-2/3 self-end translate-x-6 -mt-16 z-40" data-aos="fade-left">
-          <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden">
-            <img src="https://placehold.co/600x400/64748b/fff?text=Art+4" alt="Art 4" class="w-full h-64 object-cover" />
+          <!-- Tile 4: Right, overlapping previous -->
+          <div class="relative w-2/3 self-end translate-x-6 -mt-16 z-40" data-aos="fade-left">
+            <div class="bg-gray-800 rounded-xl shadow-xl overflow-hidden">
+              <img src="https://placehold.co/600x400/64748b/fff?text=Art+4" alt="Art 4" class="w-full h-64 object-cover" />
+            </div>
           </div>
+          <!-- Tile 5: Left, overlapping previous -->
+          <div class="relative w-2/3 self-start -translate-x-6 -mt-16 z-50" data-aos="fade-right">
+            <div class="bg-gray-800 rounded-xl shadow-xl overflow-hidden">
+              <img src="https://placehold.co/600x400/7b8794/fff?text=Art+5" alt="Art 5" class="w-full h-64 object-cover" />
+            </div>
+          </div>
+          <!-- Tile 6: Right, overlapping previous -->
+          <div class="relative w-2/3 self-end translate-x-6 -mt-16 z-60" data-aos="fade-left">
+            <div class="bg-gray-800 rounded-xl shadow-xl overflow-hidden">
+              <img src="https://placehold.co/600x400/8b9ba8/fff?text=Art+6" alt="Art 6" class="w-full h-64 object-cover" />
+            </div>
+          </div>
+          <!-- Tile 7: Left, overlapping previous -->
+          <div class="relative w-2/3 self-start -translate-x-6 -mt-16 z-70" data-aos="fade-right">
+            <div class="bg-gray-800 rounded-xl shadow-xl overflow-hidden">
+              <img src="https://placehold.co/600x400/9baec2/fff?text=Art+7" alt="Art 7" class="w-full h-64 object-cover" />
+            </div>
+          </div>
+          <!-- Add more tiles as needed -->
         </div>
-        <!-- Add more tiles as needed -->
       </div>
+      <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" is:inline></script>
+      <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" is:inline></script>
+      <script is:inline>
+        window.addEventListener('load', function () {
+          // Hero pin effect
+          const businessCard = document.getElementById('business-card');
+          const heroSection = document.getElementById('hero-section');
+          const gallerySection = document.getElementById('gallery-section');
+          if (window.gsap && window.ScrollTrigger && businessCard && heroSection && gallerySection) {
+            gsap.registerPlugin(ScrollTrigger);
+            ScrollTrigger.create({
+              trigger: heroSection,
+              start: 'top top',
+              endTrigger: gallerySection,
+              end: 'top top',
+              pin: businessCard,
+              pinSpacing: false,
+              anticipatePin: 1,
+            });
+          }
+          // Gallery pin effect
+          const galleryCard = document.getElementById('gallery-card');
+          const tutorialsSection = document.getElementById('tutorials-section');
+          if (window.gsap && window.ScrollTrigger && galleryCard && gallerySection && tutorialsSection) {
+            gsap.registerPlugin(ScrollTrigger);
+            ScrollTrigger.create({
+              trigger: gallerySection,
+              start: 'bottom bottom', // pin when the bottom of the gallery hits the bottom of the viewport
+              endTrigger: tutorialsSection,
+              end: 'top top',         // unpin when the next section reaches the top
+              pin: galleryCard,
+              anticipatePin: 1,
+            });
+          }
+        });
+      </script>
     </section>
 
     <!-- Tutorials Section (YouTube Shorts style, horizontal row, large tiles, GSAP ScrollTrigger) -->
-    <section id="tutorials-section" class="min-h-screen flex flex-col justify-center items-center bg-gray-800 overflow-x-hidden relative">
+    <section id="tutorials-section" class="min-h-screen flex flex-col justify-center items-center bg-gray-800 overflow-x-hidden relative z-10">
       <h2 class="text-2xl font-bold mb-8 text-center">Tutorial Shorts</h2>
       <div id="shorts-row" class="w-screen flex justify-start items-center gap-8 overflow-x-visible">
-        <div class="short-tile h-[80vh] aspect-[9/16] bg-gray-900 rounded-xl shadow-lg flex items-center justify-center text-pink-400 text-lg font-bold">Short 1</div>
-        <div class="short-tile h-[80vh] aspect-[9/16] bg-gray-900 rounded-xl shadow-lg flex items-center justify-center text-pink-400 text-lg font-bold">Short 2</div>
-        <div class="short-tile h-[80vh] aspect-[9/16] bg-gray-900 rounded-xl shadow-lg flex items-center justify-center text-pink-400 text-lg font-bold">Short 3</div>
-        <div class="short-tile h-[80vh] aspect-[9/16] bg-gray-900 rounded-xl shadow-lg flex items-center justify-center text-pink-400 text-lg font-bold">Short 4</div>
-        <div class="short-tile h-[80vh] aspect-[9/16] bg-gray-900 rounded-xl shadow-lg flex items-center justify-center text-pink-400 text-lg font-bold">Short 5</div>
+        <div class="short-tile h-[80vh] aspect-[9/16] bg-gray-900 rounded-xl shadow-2xl flex items-center justify-center text-pink-400 text-lg font-bold">Short 1</div>
+        <div class="short-tile h-[80vh] aspect-[9/16] bg-gray-900 rounded-xl shadow-2xl flex items-center justify-center text-pink-400 text-lg font-bold">Short 2</div>
+        <div class="short-tile h-[80vh] aspect-[9/16] bg-gray-900 rounded-xl shadow-2xl flex items-center justify-center text-pink-400 text-lg font-bold">Short 3</div>
+        <div class="short-tile h-[80vh] aspect-[9/16] bg-gray-900 rounded-xl shadow-2xl flex items-center justify-center text-pink-400 text-lg font-bold">Short 4</div>
+        <div class="short-tile h-[80vh] aspect-[9/16] bg-gray-900 rounded-xl shadow-2xl flex items-center justify-center text-pink-400 text-lg font-bold">Short 5</div>
       </div>
       <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" is:inline></script>
       <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" is:inline></script>
