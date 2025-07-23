@@ -60,17 +60,66 @@ import '../styles/global.css';
       </div>
     </section>
 
-    <!-- Tutorials Section (YouTube Shorts style, horizontal row, large tiles) -->
-    <section class="min-h-screen flex flex-col justify-center items-center bg-gray-800 overflow-x-hidden">
+    <!-- Tutorials Section (YouTube Shorts style, horizontal row, large tiles, GSAP ScrollTrigger) -->
+    <section id="tutorials-section" class="min-h-screen flex flex-col justify-center items-center bg-gray-800 overflow-x-hidden relative">
       <h2 class="text-2xl font-bold mb-8 text-center">Tutorial Shorts</h2>
-      <div class="w-full max-w-[1200px] flex justify-center items-center gap-8 overflow-x-visible">
-        <div class="h-[80vh] aspect-[9/16] bg-gray-900 rounded-xl shadow-lg flex items-center justify-center text-pink-400 text-lg font-bold">Short 1</div>
-        <div class="h-[80vh] aspect-[9/16] bg-gray-900 rounded-xl shadow-lg flex items-center justify-center text-pink-400 text-lg font-bold">Short 2</div>
-        <div class="h-[80vh] aspect-[9/16] bg-gray-900 rounded-xl shadow-lg flex items-center justify-center text-pink-400 text-lg font-bold">Short 3</div>
-        <div class="h-[80vh] aspect-[9/16] bg-gray-900 rounded-xl shadow-lg flex items-center justify-center text-pink-400 text-lg font-bold">Short 4</div>
-        <div class="h-[80vh] aspect-[9/16] bg-gray-900 rounded-xl shadow-lg flex items-center justify-center text-pink-400 text-lg font-bold">Short 5</div>
+      <div id="shorts-row" class="w-full max-w-[1200px] flex justify-center items-center gap-8 overflow-x-visible">
+        <div class="short-tile h-[80vh] aspect-[9/16] bg-gray-900 rounded-xl shadow-lg flex items-center justify-center text-pink-400 text-lg font-bold">Short 1</div>
+        <div class="short-tile h-[80vh] aspect-[9/16] bg-gray-900 rounded-xl shadow-lg flex items-center justify-center text-pink-400 text-lg font-bold">Short 2</div>
+        <div class="short-tile h-[80vh] aspect-[9/16] bg-gray-900 rounded-xl shadow-lg flex items-center justify-center text-pink-400 text-lg font-bold">Short 3</div>
+        <div class="short-tile h-[80vh] aspect-[9/16] bg-gray-900 rounded-xl shadow-lg flex items-center justify-center text-pink-400 text-lg font-bold">Short 4</div>
+        <div class="short-tile h-[80vh] aspect-[9/16] bg-gray-900 rounded-xl shadow-lg flex items-center justify-center text-pink-400 text-lg font-bold">Short 5</div>
       </div>
+      <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" is:inline></script>
+      <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" is:inline></script>
+      <script is:inline>
+        window.addEventListener('load', function () {
+          const row = document.getElementById('shorts-row');
+          const section = document.getElementById('tutorials-section');
+          const tiles = document.querySelectorAll('.short-tile');
+          const numTiles = tiles.length;
+          let totalWidth = 0;
+          let scrollDistance = 0;
+          if (numTiles > 0) {
+            const tileWidth = tiles[0].offsetWidth;
+            const gap = parseInt(getComputedStyle(tiles[0].parentElement).gap) || 0;
+            totalWidth = numTiles * tileWidth + (numTiles - 1) * gap;
+            const container = tiles[0].parentElement;
+            const visibleWidth = container.offsetWidth;
+            scrollDistance = totalWidth - visibleWidth;
+          }
+          console.log('Number of Shorts tiles:', numTiles);
+          console.log('Total width of tiles plus gaps:', totalWidth, 'px');
+          console.log('Scroll distance:', scrollDistance, 'px');
+          if (section) {
+            console.log('Section height:', section.offsetHeight, 'px');
+          }
+          if (row) {
+            console.log('Row width:', row.offsetWidth, 'px');
+          }
+          if (window.gsap && window.ScrollTrigger && row && section && totalWidth > 0) {
+            gsap.registerPlugin(ScrollTrigger);
+            gsap.to(row, {
+              x: -totalWidth,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: section,
+                start: 'top top',
+                end: `+=${totalWidth}`,
+                pin: true,
+                scrub: 1,
+                anticipatePin: 1,
+              },
+            });
+          }
+          const extraSpacer = document.getElementById('tutorials-extra-spacer');
+          if (extraSpacer && totalWidth > 0) {
+            extraSpacer.style.height = `${totalWidth}px`;
+          }
+        });
+      </script>
     </section>
+    <section id="tutorials-extra-spacer"></section>
 
     <!-- Shop Section -->
     <section class="min-h-screen flex flex-col justify-center items-center bg-gray-900">
