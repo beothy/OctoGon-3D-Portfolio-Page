@@ -111,14 +111,14 @@ import { hero } from '../content/heroContent.js';
           const businessCard = document.getElementById('business-card');
           const heroSection = document.getElementById('hero-section');
           const gallerySection = document.getElementById('gallery-section');
-          if (window.gsap && window.ScrollTrigger && businessCard && heroSection && gallerySection) {
+          if (window.gsap && window.ScrollTrigger && heroSection && gallerySection) {
             gsap.registerPlugin(ScrollTrigger);
             ScrollTrigger.create({
               trigger: heroSection,
               start: 'top top',
               endTrigger: gallerySection,
               end: 'top top',
-              pin: businessCard,
+              pin: heroSection,
               pinSpacing: false,
               anticipatePin: 1,
             });
