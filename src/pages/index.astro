@@ -325,11 +325,32 @@ import { instagramPosts } from '../content/instagramContent.js';
     <section id="instagram-extra-spacer"></section>
 
     <!-- Shop Section -->
-    <section class="min-h-screen flex flex-col justify-center items-center bg-gray-800">
-      <div class="max-w-xl mx-auto text-center">
+    <section id="shop-section" class="min-h-screen flex flex-col justify-center items-center bg-gray-800">
+      <div id="shop-card" class="max-w-xl mx-auto text-center">
         <h2 class="text-2xl font-bold mb-4">Shop Wallpapers</h2>
         <a href="#" class="px-8 py-3 rounded-full bg-pink-400 text-gray-900 font-semibold text-lg shadow-lg hover:bg-pink-500 transition">Shop on Gumroad</a>
       </div>
+      <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" is:inline></script>
+      <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" is:inline></script>
+      <script is:inline>
+        window.addEventListener('load', function () {
+          const shopCard = document.getElementById('shop-card');
+          const shopSection = document.getElementById('shop-section');
+          const footer = document.querySelector('footer');
+          if (window.gsap && window.ScrollTrigger && shopCard && shopSection && footer) {
+            gsap.registerPlugin(ScrollTrigger);
+            ScrollTrigger.create({
+              trigger: shopSection,
+              start: 'top top',
+              endTrigger: footer,
+              end: 'top top',
+              pin: shopCard,
+              pinSpacing: false,
+              anticipatePin: 1,
+            });
+          }
+        });
+      </script>
     </section>
 
     <!-- Footer -->
