@@ -1,6 +1,8 @@
 ---
 import '../styles/global.css';
 import { hero } from '../content/heroContent.js';
+import { gallery } from '../content/galleryContent.js';
+import { instagramPosts } from '../content/instagramContent.js';
 ---
 
 <html lang="en">
@@ -125,49 +127,24 @@ import { hero } from '../content/heroContent.js';
       <div id="gallery-card" class="w-full max-w-3xl z-0">
         <h2 class="text-2xl font-bold mb-8 text-center">Latest Creations</h2>
         <div class="max-w-3xl w-full flex flex-col gap-8">
-          <!-- Tile 1: Left -->
-          <div class="relative w-2/3 self-start -translate-x-6 z-10" data-aos="fade-right">
-            <div class="bg-gray-800 rounded-xl shadow-xl overflow-hidden">
-              <img src="https://placehold.co/600x400/1e293b/fff?text=Art+1" alt="Art 1" class="w-full h-64 object-cover" />
+          {gallery.map((art, index) => (
+            <div class={`relative w-2/3 ${index % 2 === 0 ? 'self-start -translate-x-6' : 'self-end translate-x-6'} -mt-16 z-${(index + 1) * 10}`} data-aos={index % 2 === 0 ? 'fade-right' : 'fade-left'}>
+              <div class="bg-gray-800 rounded-xl shadow-xl overflow-hidden group cursor-pointer transition-transform duration-300 hover:scale-105">
+                <img src={art.image} alt={art.title} class="w-full h-64 object-cover" />
+                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center">
+                  <div class="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center p-4">
+                    <h3 class="text-xl font-bold mb-2">{art.title}</h3>
+                    <p class="text-sm text-gray-200">{art.description}</p>
+                    <div class="flex flex-wrap gap-2 mt-3 justify-center">
+                      {art.tags.map(tag => (
+                        <span class="px-2 py-1 bg-blue-500 bg-opacity-50 rounded-full text-xs">{tag}</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-          <!-- Tile 2: Right, overlapping previous -->
-          <div class="relative w-2/3 self-end translate-x-6 -mt-16 z-20" data-aos="fade-left">
-            <div class="bg-gray-800 rounded-xl shadow-xl overflow-hidden">
-              <img src="https://placehold.co/600x400/334155/fff?text=Art+2" alt="Art 2" class="w-full h-64 object-cover" />
-            </div>
-          </div>
-          <!-- Tile 3: Left, overlapping previous -->
-          <div class="relative w-2/3 self-start -translate-x-6 -mt-16 z-30" data-aos="fade-right">
-            <div class="bg-gray-800 rounded-xl shadow-xl overflow-hidden">
-              <img src="https://placehold.co/600x400/475569/fff?text=Art+3" alt="Art 3" class="w-full h-64 object-cover" />
-            </div>
-          </div>
-          <!-- Tile 4: Right, overlapping previous -->
-          <div class="relative w-2/3 self-end translate-x-6 -mt-16 z-40" data-aos="fade-left">
-            <div class="bg-gray-800 rounded-xl shadow-xl overflow-hidden">
-              <img src="https://placehold.co/600x400/64748b/fff?text=Art+4" alt="Art 4" class="w-full h-64 object-cover" />
-            </div>
-          </div>
-          <!-- Tile 5: Left, overlapping previous -->
-          <div class="relative w-2/3 self-start -translate-x-6 -mt-16 z-50" data-aos="fade-right">
-            <div class="bg-gray-800 rounded-xl shadow-xl overflow-hidden">
-              <img src="https://placehold.co/600x400/7b8794/fff?text=Art+5" alt="Art 5" class="w-full h-64 object-cover" />
-            </div>
-          </div>
-          <!-- Tile 6: Right, overlapping previous -->
-          <div class="relative w-2/3 self-end translate-x-6 -mt-16 z-60" data-aos="fade-left">
-            <div class="bg-gray-800 rounded-xl shadow-xl overflow-hidden">
-              <img src="https://placehold.co/600x400/8b9ba8/fff?text=Art+6" alt="Art 6" class="w-full h-64 object-cover" />
-            </div>
-          </div>
-          <!-- Tile 7: Left, overlapping previous -->
-          <div class="relative w-2/3 self-start -translate-x-6 -mt-16 z-70" data-aos="fade-right">
-            <div class="bg-gray-800 rounded-xl shadow-xl overflow-hidden">
-              <img src="https://placehold.co/600x400/9baec2/fff?text=Art+7" alt="Art 7" class="w-full h-64 object-cover" />
-            </div>
-          </div>
-          <!-- Add more tiles as needed -->
+          ))}
         </div>
       </div>
       <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" is:inline></script>
@@ -276,8 +253,79 @@ import { hero } from '../content/heroContent.js';
     </section>
     <section id="tutorials-extra-spacer"></section>
 
+    <!-- Instagram Section (scrolling in opposite direction) -->
+    <section id="instagram-section" class="min-h-screen flex flex-col justify-center items-center bg-gray-900 overflow-x-hidden relative z-10">
+      <h2 class="text-2xl font-bold mb-8 text-center">Instagram Feed</h2>
+      <div id="instagram-row" class="w-screen flex justify-end items-center gap-8 overflow-x-visible">
+        <div class="instagram-tile h-[80vh] aspect-square bg-gray-800 rounded-xl shadow-2xl flex items-center justify-center text-pink-400 text-lg font-bold">Post 1</div>
+        <div class="instagram-tile h-[80vh] aspect-square bg-gray-800 rounded-xl shadow-2xl flex items-center justify-center text-pink-400 text-lg font-bold">Post 2</div>
+        <div class="instagram-tile h-[80vh] aspect-square bg-gray-800 rounded-xl shadow-2xl flex items-center justify-center text-pink-400 text-lg font-bold">Post 3</div>
+        <div class="instagram-tile h-[80vh] aspect-square bg-gray-800 rounded-xl shadow-2xl flex items-center justify-center text-pink-400 text-lg font-bold">Post 4</div>
+        <div class="instagram-tile h-[80vh] aspect-square bg-gray-800 rounded-xl shadow-2xl flex items-center justify-center text-pink-400 text-lg font-bold">Post 5</div>
+        <div class="instagram-tile h-[80vh] aspect-square bg-gray-800 rounded-xl shadow-2xl flex items-center justify-center text-pink-400 text-lg font-bold">Post 6</div>
+        <div class="instagram-tile h-[80vh] aspect-square bg-gray-800 rounded-xl shadow-2xl flex items-center justify-center text-pink-400 text-lg font-bold">Post 7</div>
+        <div class="instagram-tile h-[80vh] aspect-square bg-gray-800 rounded-xl shadow-2xl flex items-center justify-center text-pink-400 text-lg font-bold">Post 8</div>
+      </div>
+      <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" is:inline></script>
+      <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" is:inline></script>
+      <script is:inline>
+        window.addEventListener('load', function () {
+          const row = document.getElementById('instagram-row');
+          const section = document.getElementById('instagram-section');
+          const tiles = document.querySelectorAll('.instagram-tile');
+          const numTiles = tiles.length;
+          let totalWidth = 0;
+          let scrollDistance = 0;
+          if (numTiles > 0) {
+            const tileWidth = tiles[0].offsetWidth;
+            const gap = parseInt(getComputedStyle(tiles[0].parentElement).gap) || 0;
+            totalWidth = numTiles * tileWidth + (numTiles - 1) * gap;
+            const container = tiles[0].parentElement;
+            const visibleWidth = container.offsetWidth;
+            scrollDistance = totalWidth - visibleWidth;
+          }
+          console.log('Number of Instagram tiles:', numTiles);
+          console.log('Total width of tiles plus gaps:', totalWidth, 'px');
+          console.log('Scroll distance:', scrollDistance, 'px');
+          if (section) {
+            console.log('Section height:', section.offsetHeight, 'px');
+          }
+          if (row) {
+            console.log('Row width:', row.offsetWidth, 'px');
+          }
+          if (window.gsap && window.ScrollTrigger && row && section && totalWidth > 0) {
+            gsap.registerPlugin(ScrollTrigger);
+            gsap.to(row, {
+              x: totalWidth, // Positive value for opposite direction
+              ease: 'none',
+              scrollTrigger: {
+                trigger: section,
+                start: 'top top',
+                end: `+=${totalWidth}`,
+                pin: true,
+                scrub: 1,
+                anticipatePin: 1,
+              },
+            });
+          }
+          // Duplicate all tiles and append them to the row for visual padding
+          if (row && numTiles > 0) {
+            for (let i = 0; i < numTiles; i++) {
+              const clone = tiles[i].cloneNode(true);
+              row.appendChild(clone);
+            }
+          }
+          const extraSpacer = document.getElementById('instagram-extra-spacer');
+          if (extraSpacer && totalWidth > 0) {
+            extraSpacer.style.height = `${totalWidth}px`;
+          }
+        });
+      </script>
+    </section>
+    <section id="instagram-extra-spacer"></section>
+
     <!-- Shop Section -->
-    <section class="min-h-screen flex flex-col justify-center items-center bg-gray-900">
+    <section class="min-h-screen flex flex-col justify-center items-center bg-gray-800">
       <div class="max-w-xl mx-auto text-center">
         <h2 class="text-2xl font-bold mb-4">Shop Wallpapers</h2>
         <a href="#" class="px-8 py-3 rounded-full bg-pink-400 text-gray-900 font-semibold text-lg shadow-lg hover:bg-pink-500 transition">Shop on Gumroad</a>
