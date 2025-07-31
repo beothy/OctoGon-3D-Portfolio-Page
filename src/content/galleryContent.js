@@ -9,58 +9,58 @@ export const gallery = [
   },
   {
     id: 2,
-    title: "Neon Dreams",
-    description: "A cyberpunk-inspired abstract composition featuring neon-lit geometric forms floating in digital space.",
-    image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&h=400&fit=crop&crop=center",
-    category: "Abstract",
-    tags: ["cyberpunk", "neon", "geometric"]
+    title: "Brutalist Life",
+    description: "A bold architectural composition inspired by brutalist design principles, featuring stark geometric forms and raw concrete textures that evoke the raw power and honesty of modernist architecture.",
+    image: "/images/gallery/brutalist-life.png",
+    category: "Architectural",
+    tags: ["brutalist", "architecture", "geometric", "concrete", "modernist"]
   },
   {
     id: 3,
-    title: "Organic Flow",
-    description: "Fluid organic shapes created through procedural modeling and particle systems in Blender.",
-    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=400&fit=crop&crop=center",
-    category: "Organic",
-    tags: ["fluid", "procedural", "organic"]
+    title: "Infinity Loop",
+    description: "An endless geometric pattern that creates the illusion of infinite depth and movement, exploring mathematical concepts of infinity through visual art.",
+    image: "/images/gallery/infinity.png",
+    category: "Mathematical",
+    tags: ["infinity", "loop", "geometric", "mathematical", "illusion"]
   },
   {
     id: 4,
-    title: "Crystal Matrix",
-    description: "A crystalline structure with intricate geometric patterns and refractive light effects.",
-    image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&h=400&fit=crop&crop=center",
-    category: "Geometric",
-    tags: ["crystal", "geometric", "refraction"]
+    title: "Retrowave Dreams",
+    description: "A neon-soaked retro-futuristic landscape that captures the essence of 80s synthwave aesthetics with vibrant colors and geometric forms.",
+    image: "/images/gallery/retrowave.png",
+    category: "Retro",
+    tags: ["retrowave", "synthwave", "neon", "80s", "retro"]
   },
   {
     id: 5,
-    title: "Digital Vortex",
-    description: "A mesmerizing spiral composition with dynamic motion and depth perception.",
-    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=400&fit=crop&crop=center",
-    category: "Abstract",
-    tags: ["vortex", "spiral", "motion"]
+    title: "Sierpinski Pyramid",
+    description: "A three-dimensional fractal structure based on the Sierpinski triangle, creating an infinite geometric pattern that reveals complexity at every scale.",
+    image: "/images/gallery/sierpinski-pyramid.png",
+    category: "Fractal",
+    tags: ["sierpinski", "fractal", "pyramid", "geometric", "mathematical"]
   },
   {
     id: 6,
-    title: "Fractal Dreams",
-    description: "Infinite geometric patterns that reveal new details at every level of magnification.",
-    image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&h=400&fit=crop&crop=center",
-    category: "Fractal",
-    tags: ["fractal", "infinite", "geometric"]
+    title: "Bubble Universe",
+    description: "A mesmerizing composition of translucent spheres and bubbles that create a sense of depth and dimension, exploring the beauty of light and transparency.",
+    image: "/images/gallery/bubble.png",
+    category: "Organic",
+    tags: ["bubble", "sphere", "transparent", "light", "organic"]
   },
   {
     id: 7,
-    title: "Liquid Geometry",
-    description: "Fluid dynamics simulation with organic curves and mathematical precision.",
-    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=400&fit=crop&crop=center",
-    category: "Organic",
-    tags: ["fluid", "geometry", "simulation"]
+    title: "Tesseract",
+    description: "A four-dimensional hypercube represented in three-dimensional space, creating complex geometric patterns that challenge our perception of reality and dimensionality.",
+    image: "/images/gallery/tesseract.png",
+    category: "Mathematical",
+    tags: ["tesseract", "4D", "hypercube", "geometric", "dimensional"]
   },
   {
     id: 8,
-    title: "Quantum Field",
-    description: "Abstract representation of quantum mechanics with particle interactions and energy fields.",
-    image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&h=400&fit=crop&crop=center",
-    category: "Abstract",
-    tags: ["quantum", "particles", "energy"]
+    title: "Trippy Topography",
+    description: "A psychedelic landscape that combines organic forms with geometric patterns, creating a surreal world where reality and imagination merge into a vibrant visual experience.",
+    image: "/images/gallery/trippy-topo.png",
+    category: "Psychedelic",
+    tags: ["psychedelic", "topography", "organic", "surreal", "vibrant"]
   }
 ]; 

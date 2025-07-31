@@ -87,7 +87,7 @@ import { instagramPosts } from '../content/instagramContent.js';
          display: block;
        }
                .group:hover .gallery-overlay {
-          background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.9) 50%, transparent 100%) !important;
+          background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.9) 25%, transparent 100%) !important;
         }
         .gallery-overlay {
           position: absolute;
@@ -138,14 +138,14 @@ import { instagramPosts } from '../content/instagramContent.js';
 
     <!-- Alternating Overlapping Gallery Section -->
     <section class="flex flex-col justify-center items-center bg-gray-900 py-24 gallery-section z-0" id="gallery-section">
-      <div id="gallery-card" class="w-full max-w-3xl z-0">
-        <h2 class="text-2xl font-bold mb-8 text-center">Latest Creations</h2>
-        <div class="max-w-3xl w-full flex flex-col gap-8">
+      <div id="gallery-card" class="w-full max-w-4xl z-0">
+
+        <div class="max-w-4xl w-full flex flex-col gap-8">
           {gallery.map((art, index) => (
-            <div class={`relative w-2/3 ${index % 2 === 0 ? 'self-start -translate-x-6' : 'self-end translate-x-6'} -mt-16 z-${(index + 1) * 10}`} data-aos={index % 2 === 0 ? 'fade-right' : 'fade-left'}>
-              <div class="bg-transparent rounded-xl shadow-xl overflow-hidden group cursor-pointer transition-transform duration-300 hover:scale-105 relative">
+            <div class={`relative self-center z-${(gallery.length - index) * 10}`} data-aos="fade-up">
+              <div class="bg-transparent rounded-xl shadow-xl group cursor-pointer transition-transform duration-300 hover:scale-105 relative">
                 <div class="relative" style="display: inline-block;">
-                  <img src={art.image} alt={art.title} class="w-full h-auto max-h-96 object-contain gallery-image" style="display: block;" />
+                  <img src={art.image} alt={art.title} class="object-contain gallery-image" style="display: block; max-width: calc(100vw - 4rem); max-height: calc(100vh - 8rem);" />
                   <div class="absolute inset-0 transition-all duration-300 flex items-end justify-center pointer-events-none gallery-overlay" style="background: transparent;">
                     <div class="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center p-4 pointer-events-auto drop-shadow-2xl w-full h-full flex flex-col justify-end">
                       <h3 class="text-xl font-bold mb-2">{art.title}</h3>
@@ -238,7 +238,7 @@ import { instagramPosts } from '../content/instagramContent.js';
     </section>
 
     <!-- Tutorials Section (YouTube Shorts style, horizontal row, large tiles, GSAP ScrollTrigger) -->
-    <section id="tutorials-section" class="min-h-screen flex flex-col justify-center items-center bg-gray-800 overflow-x-hidden relative z-10">
+    <section id="tutorials-section" class="min-h-screen flex flex-col justify-start items-center bg-gray-800 overflow-x-hidden relative z-10 pt-8">
       <h2 class="text-2xl font-bold mb-8 text-center">Tutorial Shorts</h2>
       <div id="shorts-row" class="w-screen flex justify-start items-center gap-8 overflow-x-visible">
         <div class="short-tile h-[80vh] aspect-[9/16] bg-gray-900 rounded-xl shadow-2xl flex items-center justify-center text-pink-400 text-lg font-bold">Short 1</div>
@@ -306,7 +306,7 @@ import { instagramPosts } from '../content/instagramContent.js';
     <section id="tutorials-extra-spacer"></section>
 
     <!-- Instagram Section (scrolling in opposite direction) -->
-    <section id="instagram-section" class="min-h-screen flex flex-col justify-center items-center bg-gray-900 overflow-x-hidden relative z-10">
+    <section id="instagram-section" class="min-h-screen flex flex-col justify-start items-center bg-gray-900 overflow-x-hidden relative z-10 pt-8">
       <h2 class="text-2xl font-bold mb-8 text-center">Instagram Feed</h2>
       <div id="instagram-row" class="w-screen flex justify-end items-center gap-8 overflow-x-visible">
         <div class="instagram-tile h-[80vh] aspect-square bg-gray-800 rounded-xl shadow-2xl flex items-center justify-center text-pink-400 text-lg font-bold">Post 1</div>
@@ -456,8 +456,8 @@ import { instagramPosts } from '../content/instagramContent.js';
     <script src="/aos.js" is:inline></script>
     <script>
       setTimeout(function () {
-        if (window.AOS) {
-          AOS.init();
+        if ((window as any).AOS) {
+          (window as any).AOS.init();
         } else {
           console.error('AOS not found on window');
         }
