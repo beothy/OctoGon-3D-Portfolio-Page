@@ -87,7 +87,7 @@ import { instagramPosts } from '../content/instagramContent.js';
          display: block;
        }
                .group:hover .gallery-overlay {
-          background-color: rgba(0, 0, 0, 0.5) !important;
+          background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.9) 50%, transparent 100%) !important;
         }
         .gallery-overlay {
           position: absolute;
@@ -146,8 +146,8 @@ import { instagramPosts } from '../content/instagramContent.js';
               <div class="bg-transparent rounded-xl shadow-xl overflow-hidden group cursor-pointer transition-transform duration-300 hover:scale-105 relative">
                 <div class="relative" style="display: inline-block;">
                   <img src={art.image} alt={art.title} class="w-full h-auto max-h-96 object-contain gallery-image" style="display: block;" />
-                  <div class="absolute inset-0 transition-all duration-300 flex items-center justify-center pointer-events-none gallery-overlay" style="background-color: rgba(0, 0, 0, 0);">
-                    <div class="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center p-4 pointer-events-auto drop-shadow-2xl w-full h-full flex flex-col justify-center">
+                  <div class="absolute inset-0 transition-all duration-300 flex items-end justify-center pointer-events-none gallery-overlay" style="background: transparent;">
+                    <div class="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center p-4 pointer-events-auto drop-shadow-2xl w-full h-full flex flex-col justify-end">
                       <h3 class="text-xl font-bold mb-2">{art.title}</h3>
                       <p class="text-sm text-gray-200">{art.description}</p>
                       <div class="flex flex-wrap gap-2 mt-3 justify-center">
