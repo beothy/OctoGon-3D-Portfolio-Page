@@ -5,7 +5,7 @@ export const gallery = [
     description: "A captivating black and white optical illusion featuring a checkerboard pattern that creates the striking visual effect of a sphere or dome bulging outwards. This piece explores the interplay of geometry and perception, characteristic of Op Art.",
     image: "/images/gallery/op-art.png",
     category: "Op Art",
-    tags: ["optical illusion", "op art", "black and white", "checkerboard", "grid", "distortion", "bulge", "sphere", "3D effect", "visual art", "abstract", "pattern", "geometric", "perception"]
+    tags: ["op art", "illusion", "geometric", "3D", "B&W"]
   },
   {
     id: 2,
