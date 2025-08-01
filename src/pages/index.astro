@@ -136,103 +136,92 @@ import { instagramPosts } from '../content/instagramContent.js';
       });
     </script>
 
-    <!-- Alternating Overlapping Gallery Section -->
-    <section class="flex flex-col justify-center items-center bg-gray-900 py-24 gallery-section z-0" id="gallery-section">
-      <div id="gallery-card" class="w-full max-w-4xl z-0">
-
-        <div class="max-w-4xl w-full flex flex-col gap-8">
-          {gallery.map((art, index) => (
-            <div class={`relative self-center z-${(gallery.length - index) * 10}`} data-aos="fade-up">
-              <div class="bg-transparent rounded-xl shadow-xl group cursor-pointer transition-transform duration-300 hover:scale-105 relative">
-                <div class="relative" style="display: inline-block;">
-                  <img src={art.image} alt={art.title} class="object-contain gallery-image" style="display: block; max-width: calc(100vw - 4rem); max-height: calc(100vh - 8rem);" />
-                  <div class="absolute inset-0 transition-all duration-300 flex items-end justify-center pointer-events-none gallery-overlay" style="background: transparent;">
-                    <div class="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center p-4 pointer-events-auto drop-shadow-2xl w-full h-full flex flex-col justify-end">
-                      <h3 class="text-xl font-bold mb-2">{art.title}</h3>
-                      <p class="text-sm text-gray-200">{art.description}</p>
-                      <div class="flex flex-wrap gap-2 mt-3 justify-center">
-                        {art.tags.map(tag => (
-                          <span class="px-2 py-1 bg-blue-500 bg-opacity-50 rounded-full text-xs">{tag}</span>
-                        ))}
+    <!-- Gallery Section with Individual Item Pinning -->
+    <section class="gallery-section z-0" id="gallery-section">
+      {gallery.map((art, index) => (
+        <>
+          <div 
+            class="min-h-screen flex flex-col justify-center items-center bg-gray-900 gallery-item" 
+            id={`gallery-item-${index}`}
+            data-index={index}
+          >
+            <div class="w-full max-w-4xl gallery-item-content flex justify-center items-center" style="z-index: ${(gallery.length - index) * 10}">
+              <div class="relative">
+                <div class="bg-transparent rounded-xl shadow-xl group cursor-pointer transition-transform duration-300 hover:scale-105 relative">
+                  <div class="relative" style="display: inline-block;">
+                    <img src={art.image} alt={art.title} class="object-contain gallery-image" style="display: block; max-width: calc(100vw - 4rem); max-height: calc(100vh - 8rem);" />
+                    <div class="absolute inset-0 transition-all duration-300 flex items-end justify-center pointer-events-none gallery-overlay" style="background: transparent;">
+                      <div class="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center p-4 pointer-events-auto drop-shadow-2xl w-full h-full flex flex-col justify-end">
+                        <h3 class="text-xl font-bold mb-2">{art.title}</h3>
+                        <p class="text-sm text-gray-200">{art.description}</p>
+                        <div class="flex flex-wrap gap-2 mt-3 justify-center">
+                          {art.tags.map(tag => (
+                            <span class="px-2 py-1 bg-blue-500 bg-opacity-50 rounded-full text-xs">{tag}</span>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          ))}
-        </div>
-      </div>
+          </div>
+          <div class="h-screen bg-gray-900"></div>
+        </>
+      ))}
+      <div class="h-screen bg-gray-900"></div>
       <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" is:inline></script>
       <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" is:inline></script>
       <script is:inline>
         window.addEventListener('load', function () {
-          // Hero pin effect
-          const businessCard = document.getElementById('business-card');
-          const heroSection = document.getElementById('hero-section');
-          const gallerySection = document.getElementById('gallery-section');
-          if (window.gsap && window.ScrollTrigger && heroSection && gallerySection) {
+          if (window.gsap && window.ScrollTrigger) {
             gsap.registerPlugin(ScrollTrigger);
-            ScrollTrigger.create({
-              trigger: heroSection,
-              start: 'top top',
-              endTrigger: gallerySection,
-              end: 'top top',
-              pin: heroSection,
-              pinSpacing: false,
-              anticipatePin: 1,
-            });
-          }
-          // Gallery pin effect
-          const galleryCard = document.getElementById('gallery-card');
-          const tutorialsSection = document.getElementById('tutorials-section');
-          if (window.gsap && window.ScrollTrigger && galleryCard && gallerySection && tutorialsSection) {
-            gsap.registerPlugin(ScrollTrigger);
-            ScrollTrigger.create({
-              trigger: gallerySection,
-              start: 'bottom bottom', // pin when the bottom of the gallery hits the bottom of the viewport
-              endTrigger: tutorialsSection,
-              end: 'top top',         // unpin when the next section reaches the top
-              pin: galleryCard,
-              anticipatePin: 1,
-            });
-          }
-          
-          // Debug gallery image and overlay dimensions
-          function debugGalleryDimensions() {
-            const images = document.querySelectorAll('.gallery-image');
-            const overlays = document.querySelectorAll('.gallery-overlay');
             
-            console.log('=== Gallery Debug Info ===');
-            images.forEach((img, index) => {
-              const overlay = overlays[index];
-              const container = img.closest('.relative');
-              
-              console.log(`Image ${index + 1}:`);
-              console.log('  - Natural dimensions:', img.naturalWidth, 'x', img.naturalHeight);
-              console.log('  - Display dimensions:', img.offsetWidth, 'x', img.offsetHeight);
-              console.log('  - Container dimensions:', container.offsetWidth, 'x', container.offsetHeight);
-              console.log('  - Image computed styles:', {
-                width: getComputedStyle(img).width,
-                height: getComputedStyle(img).height,
-                objectFit: getComputedStyle(img).objectFit
+            // Hero pin effect (keep existing)
+            const heroSection = document.getElementById('hero-section');
+            const gallerySection = document.getElementById('gallery-section');
+            if (heroSection && gallerySection) {
+              ScrollTrigger.create({
+                trigger: heroSection,
+                start: 'top top',
+                endTrigger: gallerySection,
+                end: 'bottom top',
+                pin: heroSection,
+                pinSpacing: false,
+                anticipatePin: 1,
               });
+            }
+            
+            // Individual gallery item pinning with shrinking effect
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            const tutorialsSection = document.getElementById('tutorials-section');
+            
+            console.log('Found gallery items:', galleryItems.length);
+            
+            // Individual gallery item pinning with proper transitions
+            console.log('Found gallery items:', galleryItems.length);
+            
+            console.log('Setting up gallery items with proper z-index');
+            
+            // Pin all items and animate their visibility
+            galleryItems.forEach((item, index) => {
+              const itemContent = item.querySelector('.gallery-item-content');
               
-              if (overlay) {
-                console.log('  - Overlay dimensions:', overlay.offsetWidth, 'x', overlay.offsetHeight);
-                console.log('  - Overlay position:', {
-                  top: getComputedStyle(overlay).top,
-                  left: getComputedStyle(overlay).left
-                });
-              }
-              console.log('---');
+              console.log(`Setting up item ${index}:`, item.id);
+              
+              // Pin each item for the entire gallery duration
+              ScrollTrigger.create({
+                trigger: item,
+                start: 'top top',
+                endTrigger: tutorialsSection,
+                end: 'bottom top',
+                pin: itemContent,
+                pinSpacing: false,
+                anticipatePin: 1,
+
+              });
             });
           }
-          
-          // Run debug after images load
-          window.addEventListener('load', () => {
-            setTimeout(debugGalleryDimensions, 1000);
-          });
         });
       </script>
     </section>
